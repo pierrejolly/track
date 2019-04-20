@@ -1,0 +1,16 @@
+{##
+ # @see https://github.com/simplethings/SimpleThingsFormExtraBundle/blob/master/Form/Extension/FieldTypeHelpExtension.php
+ # @see http://ajaxray.com/blog/symfony2-forms-twitter-bootstrap-help-block
+ #}
+{% extends 'bootstrap_3_layout.html.twig' %}
+ 
+{% block form_help %}
+    {% if help|default %}
+        <span class="help-block">{{ help }}</span>
+    {% endif %}
+{% endblock form_help %}
+ 
+{% block form_label %}
+    {{ parent() }}
+    {{ block('form_help') }}
+{% endblock form_label %}

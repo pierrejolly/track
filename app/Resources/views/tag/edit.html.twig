@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+
+    <!-- Colorpicker -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+{% endblock head_stylesheets %}
+
+{% block body_content %}
+    <h1 id="page-title">Tags</h1>
+
+    {% include 'tag/_submenu.html.twig' with {'submenu_active': 'edit', 'tag': tag} only %}
+    {% include 'tag/_form.html.twig' with {'form': form} only %}
+{% endblock %}
+
+{% block body_javascripts %}
+    {{ parent() }}
+
+    <!-- Colorpicker -->
+    <script type="text/javascript" src="{{ asset('libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script type="text/javascript">
+        $(".color-picker").colorpicker({
+            'format' : 'hex'
+        });
+    </script>
+{% endblock body_javascripts %}

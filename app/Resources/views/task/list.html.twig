@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block body_content %}
+    <h1 id="page-title">Tâches</h1>
+
+    {% include 'task/_submenu.html.twig' with {submenu_active: 'list'} only %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {{ datatable_render(datatable) }}
+            {#
+            {% for tag in task.tags %}
+            <span class="label" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
+            {% endfor %}}
+            #}
+        </div>
+    </div>
+{% endblock body_content %}

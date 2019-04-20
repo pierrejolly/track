@@ -1,0 +1,10 @@
+\AppBundle\Entity\User:
+    user_pierre_jolly:
+        username:      pie.jolly@gmail.com
+        plainPassword: jolly
+        email:         pie.jolly@gmail.com
+        firstName:     Pierre
+        lastName:      Jolly
+        birthday:      <(new DateTime("01-01-1985"))>
+        roles:         [ROLE_SUPER_ADMIN]
+        enabled:       true

@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block body_content %}
+    <h1 id="page-title">Projets</h1>
+
+    {% include 'project/_submenu.html.twig' with {'submenu_active': 'show', 'project': project} only %}
+    
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ project.name }}</h2>
+            <div class="well">
+                Cette interface est en cours de développement...
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                      <span class="sr-only">En cours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

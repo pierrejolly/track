@@ -1,0 +1,10 @@
+\AppBundle\Entity\Tag:
+    tag_development:
+        name:  development
+        color: <hexcolor()>
+    tag_integration:
+        name:  integration
+        color: <hexcolor()>
+    tag_maintenance:
+        name:  maintenance
+        color: <hexcolor()>

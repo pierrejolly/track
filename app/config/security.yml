@@ -1,0 +1,72 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_VIEW_ALL:
+            - ROLE_VIEW_PROJECT
+            - ROLE_VIEW_TAG
+            - ROLE_VIEW_TASK
+            - ROLE_VIEW_USER
+        ROLE_ADD_ALL:
+            - ROLE_ADD_PROJECT
+            - ROLE_ADD_TAG
+            - ROLE_ADD_TASK
+            - ROLE_ADD_USER
+        ROLE_EDIT_ALL:
+            - ROLE_EDIT_PROJECT
+            - ROLE_EDIT_TAG
+            - ROLE_EDIT_TASK
+            - ROLE_EDIT_USER
+        ROLE_DELETE_ALL:
+            - ROLE_DELETE_PROJECT
+            - ROLE_DELETE_TAG
+            - ROLE_DELETE_TASK
+            - ROLE_DELETE_USER
+        ROLE_USER:
+            - ROLE_VIEW_PROJECT
+            - ROLE_VIEW_TAG
+            - ROLE_VIEW_TASK
+            - ROLE_ADD_PROJECT
+            - ROLE_ADD_TAG
+            - ROLE_ADD_TASK
+            - ROLE_EDIT_PROJECT
+            - ROLE_EDIT_TAG
+            - ROLE_EDIT_TASK
+            - ROLE_DELETE_PROJECT
+            - ROLE_DELETE_TAG
+            - ROLE_DELETE_TASK
+        ROLE_ADMIN:
+            - ROLE_VIEW_ALL
+            - ROLE_ADD_ALL
+            - ROLE_EDIT_ALL
+            - ROLE_DELETE_ALL
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_ALLOWED_TO_SWITCH
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+
+            logout:       true
+            anonymous:    true
+            switch_user:  true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }

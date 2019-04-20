@@ -1,0 +1,11 @@
+\AppBundle\Entity\Project:
+    project_track:
+        name:    Track
+        client:  Bar Inc.
+        color:   <hexcolor()>
+        enabled: true
+    project_intranet:
+        name:    Intranet
+        client:  Foo Corp.
+        color:   <hexcolor()>
+        enabled: true

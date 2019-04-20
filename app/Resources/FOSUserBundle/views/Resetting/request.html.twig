@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body_content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Veuillez vous connecter</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            {% if invalid_username is defined %}
+                                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                            {% endif %}
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" class="form-control" id="username" name="username" required="required">
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-info btn-block">{{ 'resetting.request.submit'|trans }}</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_content %}

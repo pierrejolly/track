@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <meta name="author" content="pierre jolly">
+
+            <title>{% block head_title '[TRACK] beta' %}</title>
+
+            {% block head_javascripts %}
+                <script type="text/javascript" src="{{ asset('libs/jquery/1.12.0/jquery.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/jquery-ui-1.11.4.custom/datepicker-fr.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/moment.js/2.17.0/moment-with-locales.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/bootstrap/3.3.7/js/bootstrap.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/select2/4.0.3/js/select2.full.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('libs/bootstrap-daterangepicker/2.1.24/daterangepicker.js') }}"></script>
+                
+                <script type="text/javascript" src="https://cdn.datatables.net/u/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,b-1.2.1,b-colvis-1.2.1,b-flash-1.2.1,b-html5-1.2.1,b-print-1.2.1,r-2.1.0/datatables.min.js"></script>
+                
+                <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                <script type="text/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+                
+                {#<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>#}
+
+            {% endblock head_javascripts %}
+            
+            {% block head_stylesheets %}
+                <link type="text/css" rel="stylesheet" href="{{ asset('libs/jquery-ui-1.11.4.custom/jquery-ui.min.css') }}">
+                <link type="text/css" rel="stylesheet" href="{{ asset('libs/bootstrap/3.3.7/css/bootstrap.min.css') }}">
+                <link type="text/css" rel="stylesheet" href="{{ asset('libs/font-awesome/4.7.0/css/font-awesome.min.css') }}">
+                <link type="text/css" rel="stylesheet" href="{{ asset('libs/select2/4.0.3/css/select2.min.css') }}">
+                <link type="text/css" rel="stylesheet" href="{{ asset('libs/bootstrap-daterangepicker/2.1.24/daterangepicker.css') }}">
+                
+                <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/u/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,b-1.2.1,b-colvis-1.2.1,b-flash-1.2.1,b-html5-1.2.1,b-print-1.2.1,r-2.1.0/datatables.min.css">
+                
+                <link type="text/css" rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            {% endblock head_stylesheets %}
+        {% endblock head %}
+    </head>
+
+    <body>
+        {% block body %}
+            {% block body_navigation %}
+                {{ include('_navigation.html.twig', with_context = false) }}
+            {% endblock body_navigation %}
+
+            {{ include('_flash.html.twig', {'close': true}, with_context = false) }}
+
+            <div class="container">
+                {% block body_content %}{% endblock body_content %}
+                {% block body_modal %}{{ include('_modal.html.twig', with_context = false) }}{% endblock body_modal %}
+            </div>
+
+            {% block body_javascripts %}
+                <script type="text/javascript">
+                    // @link http://stackoverflow.com/a/12287169/799309
+                    $('body').on('hidden.bs.modal', '.modal', function () {
+                        $('#modal .modal-body').text('Chargement...');
+                        $(this).removeData('bs.modal');
+                    });
+                </script>
+            {% endblock body_javascripts %}
+
+            {% block footer %}{{ include('_footer.html.twig', with_context = false) }}{% endblock footer %}
+        {% endblock body %}
+    </body>
+</html>

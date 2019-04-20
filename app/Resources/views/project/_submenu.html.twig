@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#submenu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="submenu">
+            <ul class="nav navbar-nav">
+                <li class="{{ submenu_active == 'list' ? 'active': '' }}">
+                    <a href="{{ path('project_list') }}">Liste</a>
+                </li>
+                {% if is_granted('ROLE_ADD_PROJECT') %}
+                <li class="{{ submenu_active == 'new' ? 'active': '' }}">
+                    <a href="{{ path('project_new') }}">Ajouter</a>
+                </li>
+                {% endif %}
+                {% if submenu_active == 'edit' %}
+                <li class="active">
+                    <a href="{{ path('project_edit', {'id': project.id}) }}">Modifier : {{ project.name }}</a>
+                </li>
+                {% elseif submenu_active == 'show' %}
+                <li class="active">
+                    <a href="{{ path('project_show', {'id': project.id}) }}">Voir : {{ project.name }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

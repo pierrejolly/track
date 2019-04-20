@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+
+    <!-- Select2 -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('libs/select2/4.0.1/css/select2.min.css') }}">
+{% endblock head_stylesheets %}
+
+{% block body_content %}
+    <h1 id="page-title">Utilisateurs</h1>
+
+    {% include 'user/_submenu.html.twig' with {'submenu_active': 'edit', 'user': user} only %}
+    {% include 'user/_form.html.twig' with {'form': form} only %}
+{% endblock %}

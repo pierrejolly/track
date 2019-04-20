@@ -1,0 +1,20 @@
+{% extends "layout.html.twig" %}
+
+{% block body_content %}
+    <h1 id="page-title">{{ user.fullName}} </h1>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="dl-horizontal">
+                <dt>Nom d'utilisateur</dt>
+                <dd>{{ user.username }}</dd>
+                
+                <dt>Email</dt>
+                <dd>{{ user.email }}</dd>
+                
+                <dt>Date de naissance</dt>
+                <dd>{{ user.birthday|date('d-m-Y') }}</dd>
+            </dl>
+        </div>
+    </div>
+{% endblock body_content %}
